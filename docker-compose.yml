@@ -1,0 +1,28 @@
+services:
+  app-spring:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db-pg
+    networks:
+      - dev
+
+  db-pg:
+    build:
+      context: .
+      dockerfile: db.dockerfile
+    ports:
+      - "5600:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=db
+    volumes:
+      - ./.docker/pgdata:/var/lib/postgresql/data
+    restart: always
+    networks:
+      - dev
+
+networks:
+  dev:

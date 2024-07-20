@@ -4,5 +4,7 @@
   },
   "editor.formatOnSave": true,
   "java.compile.nullAnalysis.mode": "automatic",
-  "java.configuration.updateBuildConfiguration": "automatic"
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "editor.defaultFormatter": "redhat.java",
+  "java.completion.enabled": true,
 }

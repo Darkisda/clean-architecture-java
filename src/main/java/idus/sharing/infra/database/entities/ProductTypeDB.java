@@ -1,6 +1,6 @@
 package idus.sharing.infra.database.entities;
 
-import idus.sharing.application.datamappers.ModelConverter;
+import idus.sharing.application.adapters.ModelConverter;
 import idus.sharing.core.domain.productType.ProductType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

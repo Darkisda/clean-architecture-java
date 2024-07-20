@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import idus.sharing.core.domain.feedstock.Feedstock;
+import idus.sharing.core.usecases.adapters.outputs.FeedstockListOutput;
 import idus.sharing.infra.database.repositories.FeedstockRepositoryJPA;
 import lombok.RequiredArgsConstructor;
 
@@ -13,8 +13,10 @@ import lombok.RequiredArgsConstructor;
 public class FeedstockService {
   private final FeedstockRepositoryJPA repositoryJPA;
 
-  public List<Feedstock> findAll() {
+  public List<FeedstockListOutput> findAll() {
     var feedstocksJPA = this.repositoryJPA.findAll();
-    return feedstocksJPA.stream().map(f -> new Feedstock(f.getId(), f.getName(), f.getCode())).toList();
+    return feedstocksJPA.stream().map(f -> {
+      return new FeedstockListOutput(f.getId(), f.getName(), f.converter().getFormattedCode());
+    }).toList();
   }
 }

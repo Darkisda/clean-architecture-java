@@ -1,5 +1,7 @@
 package idus.sharing.infra.database.entities;
 
+import idus.sharing.application.datamappers.ModelConverter;
+import idus.sharing.core.domain.property.Property;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,11 +15,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "property")
-public class PropertyDB {
+public class PropertyDB implements ModelConverter<Property> {
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private int id;
 
   @Column(nullable = false)
   private String name;
+
+  @Override
+  public Property converter() {
+    return new Property(this.id, this.name);
+  }
 }

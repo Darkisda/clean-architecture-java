@@ -1,5 +1,7 @@
 package idus.sharing.infra.database.entities;
 
+import idus.sharing.application.datamappers.ModelConverter;
+import idus.sharing.core.domain.productType.ProductType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "product_type")
-public class ProductTypeDB {
+public class ProductTypeDB implements ModelConverter<ProductType> {
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private int id;
@@ -23,4 +25,9 @@ public class ProductTypeDB {
 
   @Column(nullable = false)
   private Integer code;
+
+  @Override
+  public ProductType converter() {
+    return new ProductType(this.id, this.name, this.code);
+  }
 }

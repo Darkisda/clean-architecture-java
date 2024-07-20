@@ -12,7 +12,7 @@ public class FeedstockRepositoryMock implements FeedstockRepository {
 
   public FeedstockRepositoryMock() {
     this.data = new ArrayList<Feedstock>();
-    this.data.add(new Feedstock(1, "Abacate", 1));
+    this.data.add(new Feedstock(1, "Abacate", 1, List.of()));
   }
 
   @Override

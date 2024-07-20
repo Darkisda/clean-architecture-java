@@ -9,7 +9,7 @@ import idus.sharing.core.domain.product.ProductRepository;
 import idus.sharing.core.domain.productType.ProductTypeRepository;
 import idus.sharing.core.domain.property.Property;
 import idus.sharing.core.domain.property.PropertyRepository;
-import idus.sharing.core.usecases.adapters.inputs.CreateProductInput;
+import idus.sharing.core.usecases.ports.inputs.CreateProductInput;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

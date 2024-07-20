@@ -12,7 +12,7 @@ import idus.sharing.core.domain.product.ProductRepository;
 import idus.sharing.core.domain.productType.ProductTypeRepository;
 import idus.sharing.core.domain.property.PropertyRepository;
 import idus.sharing.core.usecases.CreateProduct;
-import idus.sharing.core.usecases.adapters.inputs.CreateProductInput;
+import idus.sharing.core.usecases.ports.inputs.CreateProductInput;
 import idus.sharing.infra.database.repositories.FeedstockRepositoryMock;
 import idus.sharing.infra.database.repositories.ProductRepositoryMock;
 import idus.sharing.infra.database.repositories.ProductTypeRepositoryMock;

@@ -31,7 +31,7 @@ public class CreateProductTests {
     var useCase = new CreateProduct(this.repository, this.feedstockRepository, this.typeRepository,
         this.propertyRepository);
     var product = useCase.exec(new CreateProductInput(1, 1, List.of(1), true));
-    assertEquals(product.getCorrespondingCode(), "0001 0001 1");
+    assertEquals(product.correspondingCode(), "0001 0001 1");
   }
 
   public CreateProductTests() {

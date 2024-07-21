@@ -10,6 +10,9 @@ import idus.sharing.core.domain.productType.ProductTypeRepository;
 import idus.sharing.core.domain.property.Property;
 import idus.sharing.core.domain.property.PropertyRepository;
 import idus.sharing.core.usecases.ports.inputs.CreateProductInput;
+import idus.sharing.core.usecases.ports.outputs.CreateProductOutput;
+import idus.sharing.core.usecases.ports.outputs.PropertyListOutput;
+import idus.sharing.core.usecases.ports.outputs.TypeListOutput;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -19,7 +22,7 @@ public class CreateProduct {
   private final ProductTypeRepository productTypeRepository;
   private final PropertyRepository propertyRepository;
 
-  public Product exec(CreateProductInput input) {
+  public CreateProductOutput exec(CreateProductInput input) {
     var feedstock = this.feedstockRepository.findById(input.feedstockId()).orElseThrow();
     var productType = this.productTypeRepository.findById(input.productTypeId()).orElseThrow();
     List<Property> properties = new ArrayList<Property>();
@@ -40,7 +43,10 @@ public class CreateProduct {
 
     var p = this.repository.save(product);
 
-    return p;
+    return new CreateProductOutput(p.getId(), p.getCorrespondingCode(), p.getIsOrganic(),
+        new TypeListOutput(p.getType().getId(), p.getType().getName(), p.getType().getFormattedCode()),
+        p.getProperties()
+            .stream().map(property -> new PropertyListOutput(property.getId(), property.getName())).toList());
   }
 
   private String handleGenerateCorrespondingCode(String feedstockCode, String typeCode, Boolean isOrganic) {

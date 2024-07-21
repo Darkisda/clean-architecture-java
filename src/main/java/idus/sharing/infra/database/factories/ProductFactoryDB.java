@@ -11,7 +11,7 @@ public class ProductFactoryDB {
     product.setCorrespondingCode(tdb.getCorrespondingCode());
     product.setType(ProductTypeFactoryDB.handleBuildToModel(tdb.getType()));
     product.setProperties(PropertyFactoryDB.newListToModel(tdb.getProperties()));
-
+    product.setFeedstock(FeedstockFactoryDB.handleBuildToModel(tdb.getFeedstock()));
     return product;
   };
 
@@ -22,7 +22,7 @@ public class ProductFactoryDB {
     productDB.setCorrespondingCode(t.getCorrespondingCode());
     productDB.setType(ProductTypeFactoryDB.handleBuildFromModel(t.getType()));
     productDB.setProperties(PropertyFactoryDB.newListFromModel(t.getProperties()));
-
+    productDB.setFeedstock(FeedstockFactoryDB.handleBuildFromModel(t.getFeedstock()));
     return productDB;
   };
 }

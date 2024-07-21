@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import idus.sharing.core.usecases.ports.inputs.CreateProductInput;
+import idus.sharing.core.usecases.ports.outputs.CreateProductOutput;
 import idus.sharing.infra.services.ProductService;
 import lombok.RequiredArgsConstructor;
 
@@ -17,8 +18,8 @@ public class ProductController {
   private final ProductService service;
 
   @PostMapping
-  public ResponseEntity create(@RequestBody CreateProductInput input) {
+  public ResponseEntity<CreateProductOutput> create(@RequestBody CreateProductInput input) {
     var response = this.service.create(input);
-    return ResponseEntity.ok().body(null);
+    return ResponseEntity.ok().body(response);
   }
 }

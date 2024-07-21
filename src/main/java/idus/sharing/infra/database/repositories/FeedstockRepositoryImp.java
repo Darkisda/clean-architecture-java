@@ -8,7 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import idus.sharing.core.domain.feedstock.Feedstock;
 import idus.sharing.core.domain.feedstock.FeedstockRepository;
+import idus.sharing.core.domain.product.Product;
 import idus.sharing.infra.database.factories.FeedstockFactoryDB;
+import idus.sharing.infra.database.factories.ProductTypeFactoryDB;
+import idus.sharing.infra.database.factories.PropertyFactoryDB;
 import lombok.RequiredArgsConstructor;
 
 @Repository
@@ -18,7 +21,29 @@ public class FeedstockRepositoryImp implements FeedstockRepository {
 
   @Override
   public Optional<Feedstock> findById(int id) {
-    var feedstock = this.repositoryJPA.findById(id);
+    var feedstock = this.repositoryJPA.findWithProductById(id);
+    if (!feedstock.isPresent()) {
+      return Optional.empty();
+    }
+    var response = new Feedstock();
+    response.setId(feedstock.get().getId());
+    response.setName(feedstock.get().getName());
+    response.setCode(feedstock.get().getCode());
+
+    response.setProducts(feedstock.get().getProducts().stream().map(p -> {
+      var product = new Product();
+      product.setId(p.getId());
+      product.setCorrespondingCode(p.getCorrespondingCode());
+      product.setIsOrganic(p.getIsOrganic());
+      product.setType(ProductTypeFactoryDB.handleBuildToModel(p.getType()));
+      product.setProperties(PropertyFactoryDB.newListToModel(p.getProperties()));
+      return product;
+    }).toList());
+    return Optional.of(response);
+  }
+
+  public Optional<Feedstock> findByIdO(int id) {
+    var feedstock = this.repositoryJPA.findWithProductById(id);
     if (!feedstock.isPresent()) {
       return Optional.empty();
     }

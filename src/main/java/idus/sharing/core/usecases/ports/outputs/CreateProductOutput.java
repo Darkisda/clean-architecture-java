@@ -1,5 +1,8 @@
 package idus.sharing.core.usecases.ports.outputs;
 
-public record CreateProductOutput(Integer id) {
+import java.util.List;
+
+public record CreateProductOutput(int id, String correspondingCode, Boolean isOrganic, TypeListOutput type,
+    List<PropertyListOutput> properties) {
 
 }

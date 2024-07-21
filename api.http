@@ -1,1 +1,15 @@
 GET http://localhost:8080/feedstock
+
+###
+GET http://localhost:8080/feedstock/1
+
+###
+POST http://localhost:8080/product
+Content-Type: application/json
+
+{
+  "feedstockId": 1,
+  "productTypeId": 1,
+  "propertiesId": [1,2],
+  "isOrganic": false
+}

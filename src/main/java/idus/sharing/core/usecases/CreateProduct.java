@@ -36,6 +36,7 @@ public class CreateProduct {
     product.setIsOrganic(input.isOrganic());
     product.setProperties(properties);
     product.setType(productType);
+    product.setFeedstock(feedstock);
 
     var p = this.repository.save(product);
 

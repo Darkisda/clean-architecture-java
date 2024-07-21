@@ -16,7 +16,7 @@ public class Feedstock {
   private int id;
   private String name;
   private Integer code;
-  private List<Product> product = new ArrayList<>();
+  private List<Product> products = new ArrayList<>();
 
   public String getFormattedCode() {
     var formatter = new DecimalFormat("0000");

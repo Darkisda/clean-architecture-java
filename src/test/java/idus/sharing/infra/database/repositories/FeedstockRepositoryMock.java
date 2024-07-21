@@ -19,4 +19,16 @@ public class FeedstockRepositoryMock implements FeedstockRepository {
   public Optional<Feedstock> findById(int id) {
     return this.data.stream().filter(feedstock -> feedstock.getId() == id).findFirst();
   }
+
+  @Override
+  public List<Feedstock> listFeedstockWithoutProducts() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'listFeedstockWithoutProducts'");
+  }
+
+  @Override
+  public Feedstock save(Feedstock f) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'save'");
+  }
 }

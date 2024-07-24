@@ -21,7 +21,7 @@ public class FeedstockRepositoryImp implements FeedstockRepository {
 
   @Override
   public Optional<Feedstock> findById(int id) {
-    var feedstock = this.repositoryJPA.findWithProductById(id);
+    var feedstock = this.repositoryJPA.findById(id);
     if (!feedstock.isPresent()) {
       return Optional.empty();
     }
@@ -43,7 +43,7 @@ public class FeedstockRepositoryImp implements FeedstockRepository {
   }
 
   public Optional<Feedstock> findByIdO(int id) {
-    var feedstock = this.repositoryJPA.findWithProductById(id);
+    var feedstock = this.repositoryJPA.findById(id);
     if (!feedstock.isPresent()) {
       return Optional.empty();
     }
